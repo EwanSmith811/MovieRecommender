@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Recommendation System</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-gradient-to-r from-gray-900 to-gray-700 text-white min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-3xl p-4">
+    <h1 class="text-4xl font-bold mb-8 text-center">Movie Recommendation System</h1>
+    <form id="search-form" class="flex flex-col items-center space-y-4">
+      <input id="movie-title" class="w-full p-2 border border-gray-500 rounded" type="text" placeholder="Movie Name">
+      <input id="movie-genre" class="w-full p-2 border border-gray-500 rounded" type="text" placeholder="Genre (Optional)">
+      <button class="bg-blue-500 text-white p-2 rounded w-full">Get Recommendations</button>
+    </form>
+    <ul id="recommendations" class="mt-8 space-y-4"></ul>
+  </div>
+
+  <script>
+    document.getElementById('search-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const title = document.getElementById('movie-title').value;
+      const genre = document.getElementById('movie-genre').value;
+      const response = await fetch('/recommendations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, genre }),
+      });
+      const recommendations = await response.json();
+      const recommendationsList = document.getElementById('recommendations');
+      recommendationsList.innerHTML = '';
+      recommendations.forEach(rec => {
+        const li = document.createElement('li');
+        li.className = 'bg-gray-800 p-4 rounded flex justify-between items-center hover:bg-blue-500 transition-colors';
+        li.innerHTML = `
+          <span class="flex-1">${rec.title}</span>
+          <span class="flex-1 text-center">${rec.genres}</span>
+          <span class="flex-1 text-right">${rec.score.toFixed(2)}</span>
+        `;
+        recommendationsList.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>

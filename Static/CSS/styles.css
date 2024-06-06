@@ -1,0 +1,145 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background-size: cover;
+    background-attachment: fixed; 
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #1f9ec9; 
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #1f9ec9; 
+    border-radius: 10px;
+    box-shadow: 0 0 20px #1f9ec9; 
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #1f9ec9; 
+    text-align: center;
+}
+
+input[type="text"], button {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #1f9ec9; 
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    box-sizing: border-box; 
+}
+
+input[type="text"]::placeholder {
+    color: #1f9ec9; 
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #1f9ec9;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-top: 10px; 
+}
+
+button:hover {
+    background-color: #1f9ec9; 
+    color: #000000;
+    box-shadow: 0 0 20px #1f9ec9; 
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px; 
+}
+
+.list-group-item {
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #1f9ec9; 
+    border-radius: 5px;
+    color: #1f9ec9; 
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-group-item span {
+    margin: 0 10px;
+}
+
+.list-group-item .movie-title {
+    flex: 2;
+}
+
+.list-group-item .movie-genres {
+    flex: 1;
+    text-align: center;
+}
+
+.list-group-item .movie-score {
+    flex: 1;
+    text-align: right;
+}
+
+.list-group-item:hover {
+    background-color: #1f9ec9; 
+    color: #000000;
+    box-shadow: 0 0 20px #1f9ec9; 
+}
+
+
+@media (max-width: 768px) {
+    .form-group {
+        display: block;
+        width: 100%;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .list-group-item .movie-genres, .list-group-item .movie-score {
+        text-align: left;
+        margin-top: 5px;
+    }
+}
